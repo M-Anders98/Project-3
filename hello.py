@@ -4,12 +4,15 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return render_template('index.html')
-@app.route('/quiz/')
-def about():
+@app.route('/quiz.html')
+def quiz():
     return render_template('quiz.html')
-@app.route('/recs/')
-def about():
+@app.route('/recs.html')
+def recs():
     return render_template('recs.html')
+@app.route('/index.html')
+def home():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run()
