@@ -11,7 +11,7 @@ def quiz():
 def recs():
     return render_template('recs.html')
 @app.route('/index.html')
-def home():
+def home2():
     return render_template('index.html')
 
 if __name__ == '__main__':
