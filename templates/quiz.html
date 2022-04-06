@@ -19,36 +19,199 @@
       <hr>
       <!--Add the Quiz questions below:-->
       <form action="story.html" method="GET">
-        <label for="Question-1">Question 1.</label>
-        <input id="Question-1" type="text" name="Question-1" required>
+        <!--User info-->
+        <label for="username">Name (first & last): </label>
+        <input id="username" type="text" name="username" required>
         <br>
-        <label for="Question-2">Question 2.</label>
-        <input id="Question-2" name="Question-2" type="text" required>
+        <label for="age">Age: </label>
+        <input type="number" id="age" name="age" min="1" max="100">
         <br>
-        <label for="Question-3">Question 3.</label>
-        <input id="Question-3" name="Question-3" type="number" required>
+        <label for="experience">How experienced are you in gaming? (0-5)</label>
         <br>
-        <span>Question 4.</span>
-        <input id="yes" type="radio" name="answer" value="yes" required>
-        <label for="yes">Yes</label>
-        <input id="no" type="radio" name="answer" value="no" required>
-        <label for="no">No</label>
+        <span>No Experience</span>
+        <input type="range" id="experience" name="experience" min="0" max="5">
+        <span>Very Experienced</span>
         <br>
-        <label for="speed">Question 5.</label>
-        <select id="speed" name="speed" required>
-          <option value="faster">Faster</option>
-          <option value="slower">Slower</option>
-        </select>
+        <!--Quiz Questions-->
+        <!--Question 1-->
         <br>
-        <label for="Question-5">Question 5.</label>
-        <input id="Question-4" name="Question-4" type="text" required list="Question-choices">
-        <datalist id="Question-choices">
-          <option value="winner gets ice cream"></option>
-          <option value="last one there is a rotten egg"></option>
-        </datalist>
+        <span>What Console/System(s) are you using to play? [check all that apply]</span>
         <br>
-        <label for="Question-6">Question 6.</label>
-        <textarea id="Question-6" name="Question-6" required rows="8" cols="40"></textarea>
+        <input type="checkbox" name="console" id="playstation" value="playstation">
+        <label for="playstation">PlayStation</label>
+        <br>
+        <input type="checkbox" name="console" id="xbox" value="xbox">
+        <label for="xbox">Xbox</label>
+        <br>
+        <input type="checkbox" name="console" id="switch" value="switch">
+        <label for="switch">Nintendo Switch</label>
+        <br>
+        <input type="checkbox" name="console" id="computer" value="computer">
+        <label for="computer">Computer/Laptop</label>
+        <br>
+        <!--Question 2-->
+        <br>
+        <span>What game ratings are you comfortable playing? [check all that apply]</span>
+        <br>
+        <p>To learn more about these ratings, click <a href="https://en.wikipedia.org/wiki/Entertainment_Software_Rating_Board#Ratings">here</a>.</p>
+        <input type="checkbox" name="rating" id="ec" value="ec">
+        <label for="ec">EC (Early Childhood)</label>
+        <br>
+        <input type="checkbox" name="rating" id="e" value="e">
+        <label for="e">E (Everyone)</label>
+        <br>
+        <input type="checkbox" name="rating" id="e10" value="e10">
+        <label for="e10">E10+ (Everyone 10+)</label>
+        <br>
+        <input type="checkbox" name="rating" id="t" value="t">
+        <label for="t">T (Teen)</label>
+        <br>
+        <input type="checkbox" name="rating" id="m" value="m">
+        <label for="m">M (Mature)</label>
+        <br>
+        <input type="checkbox" name="rating" id="rp" value="rp">
+        <label for="rp">RP (Rating Pending)</label>
+        <br>
+        <input type="checkbox" name="rating" id="ao" value="ao">
+        <label for="ao">AO (Adults Only)</label>
+        <br>
+        <!--Question 3-->
+        <br>
+        <span>Are you comfortable with mature content (i.e., blood, gore, sexual content, bad language)?</span>
+        <br>
+        <input type="radio" id="yes3" name="matureContent" value="yes3">
+        <label for="yes3">Yes</label>
+        <br>
+        <input type="radio" id="no3" name="matureContent" value="no3">
+        <label for="no3">No</label>
+        <br>
+        <!--Question 4-->
+        <br>
+        <span>Are you looking for a game to play with others?</span>
+        <br>
+        <input type="radio" id="myself" name="multiplayer" value="myself">
+        <label for="myself">I want to play a game by myself.</label>
+        <br>
+        <input type="radio" id="sameConsole" name="multiplayer" value="sameConsole">
+        <label for="sameConsole">I want to play with friends on the same console.</label>
+        <br>
+        <input type="radio" id="onlinePlay" name="multiplayer" value="onlinePlay">
+        <label for="onlinePlay">I want to play with others online.</label>
+        <br>
+        <input type="radio" id="learn2play" name="multiplayer" value="learn2play">
+        <label for="learn2play">I want to play alone to learn the game, then play with others when I know how to play.</label>
+        <br>
+        <!--Question 5-->
+        <br>
+        <span>How difficult do you want the game to be to complete? [check all that apply]</span>
+        <br>
+        <input type="checkbox" name="difficulty" id="easy" value="easy">
+        <label for="easy">Easy</label>
+        <br>
+        <input type="checkbox" name="difficulty" id="medium" value="medium">
+        <label for="medium">Medium</label>
+        <br>
+        <input type="checkbox" name="difficulty" id="hard" value="hard">
+        <label for="hard">Hard</label>
+        <br>
+        <input type="checkbox" name="difficulty" id="impossible" value="impossible">
+        <label for="impossible">Impossible</label>
+        <br>
+        <!--Question 6-->
+        <br>
+        <span>How much time do you expect to spend on each level or "session" of the game?</span>
+        <br>
+        <input type="radio" id="20min" name="time" value="20min">
+        <label for="20min">20 minutes</label>
+        <br>
+        <input type="radio" id="2hr" name="time" value="2hr">
+        <label for="2hr">2 hours</label>
+        <br>
+        <input type="radio" id="fewDays" name="time" value="fewDays">
+        <label for="fewDays">A few days</label>
+        <br>
+        <input type="radio" id="week" name="time" value="week">
+        <label for="week">A week</label>
+        <br>
+        <!--Question 7-->
+        <br>
+        <span>What type of game structure are you looking for? [check all that apply]</span>
+        <br>
+        <input type="checkbox" name="structure" id="levels" value="levels">
+        <label for="levels">Levels</label>
+        <p>I can pass one level and move on to a new separate level.</p>
+        <br>
+        <input type="checkbox" name="structure" id="stories" value="stories">
+        <label for="stories">Stories</label>
+        <p>I can complete challenges that move my character farther into the story.</p>
+        <br>
+        <input type="checkbox" name="structure" id="openWorld" value="openWorld">
+        <label for="openWorld">Open-world</label>
+        <p>Explore and discover without specific one-track challenges.</p>
+        <br>
+        <input type="checkbox" name="structure" id="campaigns" value="campaigns">
+        <label for="campaigns">Campaigns</label>
+        <p>Same challenge every time, but open-ended as far as what I and other players can do to win/lose this time.</p>
+        <br>
+        <!--Question 8-->
+        <br>
+        <span>Which of the following skills is most important to you?</span>
+        <br>
+        <input type="radio" id="problemSolving" name="skills1" value="problemSolving">
+        <label for="problemSolving">Problem Solving</label>
+        <br>
+        <input type="radio" id="fastReasoning" name="skills1" value="fastReasoning">
+        <label for="fastReasoning">Fast Reasoning</label>
+        <br>
+        <input type="radio" id="decisionMaking" name="skills1" value="decisionMaking">
+        <label for="decisionMaking">Quick Decision Making</label>
+        <br>
+        <input type="radio" id="organization" name="skills1" value="organization">
+        <label for="organization">Organization</label>
+        <br>
+        <!--Question 9-->
+        <br>
+        <span>Which of the following skills is most important to you?</span>
+        <br>
+        <input type="radio" id="handeyeCoordination" name="skills2" value="handeyeCoordination">
+        <label for="handeyeCoordination">Hand-eye Coordination</label>
+        <br>
+        <input type="radio" id="creativity" name="skills2" value="creativity">
+        <label for="creativity">Creativity</label>
+        <br>
+        <input type="radio" id="logicalThinking" name="skills2" value="logicalThinking">
+        <label for="logicalThinking">Logical Thinking</label>
+        <br>
+        <input type="radio" id="timeManagement" name="skills2" value="timeManagement">
+        <label for="timeManagement">Time Management</label>
+        <br>
+        <!--Question 10-->
+        <br>
+        <span>Would you be interested in a quest style game that includes a lot of conversation with game characters?</span>
+        <p>This include things such as reading and responding to their dialogue.</p>
+        <input type="radio" id="yes10" name="NPCs" value="yes10">
+        <label for="yes10">Yes</label>
+        <br>
+        <input type="radio" id="no10" name="NPCs" value="no10">
+        <label for="no10">No</label>
+        <br>
+        <!--Question 11-->
+        <br>
+        <span>Which of the following would most impact your decision on what game to play?</span>
+        <br>
+        <input type="radio" id="popularity" name="decisionImpacts" value="popularity">
+        <label for="popularity">Popularity</label>
+        <br>
+        <input type="radio" id="newness" name="decisionImpacts" value="newness">
+        <label for="newness">"Newness"</label>
+        <br>
+        <input type="radio" id="price" name="decisionImpacts" value="price">
+        <label for="price">Price</label>
+        <br>
+        <input type="radio" id="expansion" name="decisionImpacts" value="expansion">
+        <label for="expansion">Expansion possibilities</label>
+        <br>
+        <!--Submit-->
         <br>
         <input type="submit" value="Sumbit Quiz">
       </form>
