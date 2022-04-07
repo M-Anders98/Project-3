@@ -18,18 +18,18 @@
       <h1>Complete the Quiz!</h1>
       <hr>
       <!--Add the Quiz questions below:-->
-      <form action="story.html" method="GET">
+      <form action="recs.html" method="GET">
         <!--User info-->
         <label for="username">Name (first & last): </label>
         <input id="username" type="text" name="username" required>
         <br>
         <label for="age">Age: </label>
-        <input type="number" id="age" name="age" min="1" max="100">
+        <input type="number" id="age" name="age" min="1" max="100" required>
         <br>
         <label for="experience">How experienced are you in gaming? (0-5)</label>
         <br>
         <span>No Experience</span>
-        <input type="range" id="experience" name="experience" min="0" max="5">
+        <input type="range" id="experience" name="experience" min="0" max="5" required>
         <span>Very Experienced</span>
         <br>
         <!--Quiz Questions-->
@@ -37,7 +37,7 @@
         <br>
         <span>What Console/System(s) are you using to play? [check all that apply]</span>
         <br>
-        <input type="checkbox" name="console" id="playstation" value="playstation">
+        <input type="checkbox" name="console" id="playstation" value="playstation" required>
         <label for="playstation">PlayStation</label>
         <br>
         <input type="checkbox" name="console" id="xbox" value="xbox">
@@ -54,7 +54,7 @@
         <span>What game ratings are you comfortable playing? [check all that apply]</span>
         <br>
         <p>To learn more about these ratings, click <a href="https://en.wikipedia.org/wiki/Entertainment_Software_Rating_Board#Ratings">here</a>.</p>
-        <input type="checkbox" name="rating" id="ec" value="ec">
+        <input type="checkbox" name="rating" id="ec" value="ec" required>
         <label for="ec">EC (Early Childhood)</label>
         <br>
         <input type="checkbox" name="rating" id="e" value="e">
@@ -79,7 +79,7 @@
         <br>
         <span>Are you comfortable with mature content (i.e., blood, gore, sexual content, bad language)?</span>
         <br>
-        <input type="radio" id="yes3" name="matureContent" value="yes3">
+        <input type="radio" id="yes3" name="matureContent" value="yes3" required>
         <label for="yes3">Yes</label>
         <br>
         <input type="radio" id="no3" name="matureContent" value="no3">
@@ -89,7 +89,7 @@
         <br>
         <span>Are you looking for a game to play with others?</span>
         <br>
-        <input type="radio" id="myself" name="multiplayer" value="myself">
+        <input type="radio" id="myself" name="multiplayer" value="myself" required>
         <label for="myself">I want to play a game by myself.</label>
         <br>
         <input type="radio" id="sameConsole" name="multiplayer" value="sameConsole">
@@ -105,7 +105,7 @@
         <br>
         <span>How difficult do you want the game to be to complete? [check all that apply]</span>
         <br>
-        <input type="checkbox" name="difficulty" id="easy" value="easy">
+        <input type="checkbox" name="difficulty" id="easy" value="easy" required>
         <label for="easy">Easy</label>
         <br>
         <input type="checkbox" name="difficulty" id="medium" value="medium">
@@ -121,7 +121,7 @@
         <br>
         <span>How much time do you expect to spend on each level or "session" of the game?</span>
         <br>
-        <input type="radio" id="20min" name="time" value="20min">
+        <input type="radio" id="20min" name="time" value="20min" required>
         <label for="20min">20 minutes</label>
         <br>
         <input type="radio" id="2hr" name="time" value="2hr">
@@ -137,7 +137,7 @@
         <br>
         <span>What type of game structure are you looking for? [check all that apply]</span>
         <br>
-        <input type="checkbox" name="structure" id="levels" value="levels">
+        <input type="checkbox" name="structure" id="levels" value="levels" required>
         <label for="levels">Levels</label>
         <p>I can pass one level and move on to a new separate level.</p>
         <br>
@@ -157,7 +157,7 @@
         <br>
         <span>Which of the following skills is most important to you?</span>
         <br>
-        <input type="radio" id="problemSolving" name="skills1" value="problemSolving">
+        <input type="radio" id="problemSolving" name="skills1" value="problemSolving" required>
         <label for="problemSolving">Problem Solving</label>
         <br>
         <input type="radio" id="fastReasoning" name="skills1" value="fastReasoning">
@@ -173,7 +173,7 @@
         <br>
         <span>Which of the following skills is most important to you?</span>
         <br>
-        <input type="radio" id="handeyeCoordination" name="skills2" value="handeyeCoordination">
+        <input type="radio" id="handeyeCoordination" name="skills2" value="handeyeCoordination" required>
         <label for="handeyeCoordination">Hand-eye Coordination</label>
         <br>
         <input type="radio" id="creativity" name="skills2" value="creativity">
@@ -189,7 +189,7 @@
         <br>
         <span>Would you be interested in a quest style game that includes a lot of conversation with game characters?</span>
         <p>This include things such as reading and responding to their dialogue.</p>
-        <input type="radio" id="yes10" name="NPCs" value="yes10">
+        <input type="radio" id="yes10" name="NPCs" value="yes10" required>
         <label for="yes10">Yes</label>
         <br>
         <input type="radio" id="no10" name="NPCs" value="no10">
@@ -199,7 +199,7 @@
         <br>
         <span>Which of the following would most impact your decision on what game to play?</span>
         <br>
-        <input type="radio" id="popularity" name="decisionImpacts" value="popularity">
+        <input type="radio" id="popularity" name="decisionImpacts" value="popularity" required>
         <label for="popularity">Popularity</label>
         <br>
         <input type="radio" id="newness" name="decisionImpacts" value="newness">
