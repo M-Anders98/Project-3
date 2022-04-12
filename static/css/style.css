@@ -118,5 +118,5 @@ section.container .row {
 }
 
 #overlay {
-  background-color: #C39364;
+  background-image: linear-gradient(to bottom right, rgb(99, 81, 199), rgb(140, 65, 155));
 }
