@@ -2,7 +2,11 @@
 <html lang="en" dir="ltr">
   <head>
   <meta charset="utf-8">
-  <style>body{background-image: url('gradientBack.jpg')}</style>
+  <style>
+    form{background-image: url('gradientBack.jpg');}
+    p {margin: 0;}
+    span {font-size: 2.0em;}
+  </style>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <title>Gaming Quiz</title>
@@ -90,23 +94,23 @@
         <br>
         <span>Are you looking for a game to play with others?</span>
         <br>
-        <input type="radio" id="myself" name="multiplayer" value="myself" required>
+        <input type="checkbox" id="myself" name="multiplayer" value="myself">
         <label for="myself">I want to play a game by myself.</label>
         <br>
-        <input type="radio" id="sameConsole" name="multiplayer" value="sameConsole">
+        <input type="checkbox" id="sameConsole" name="multiplayer" value="sameConsole">
         <label for="sameConsole">I want to play with friends on the same console.</label>
         <br>
-        <input type="radio" id="onlinePlay" name="multiplayer" value="onlinePlay">
+        <input type="checkbox" id="onlinePlay" name="multiplayer" value="onlinePlay">
         <label for="onlinePlay">I want to play with others online.</label>
         <br>
-        <input type="radio" id="learn2play" name="multiplayer" value="learn2play">
+        <input type="checkbox" id="learn2play" name="multiplayer" value="learn2play">
         <label for="learn2play">I want to play alone to learn the game, then play with others when I know how to play.</label>
         <br>
         <!--Question 5-->
         <br>
         <span>How difficult do you want the game to be to complete? [check all that apply]</span>
         <br>
-        <input type="checkbox" name="difficulty" id="easy" value="easy" required>
+        <input type="checkbox" name="difficulty" id="easy" value="easy">
         <label for="easy">Easy</label>
         <br>
         <input type="checkbox" name="difficulty" id="medium" value="medium">
@@ -122,17 +126,17 @@
         <br>
         <span>How much time do you expect to spend on each level or "session" of the game?</span>
         <br>
-        <input type="radio" id="20min" name="time" value="20min" required>
-        <label for="20min">20 minutes</label>
+        <input type="radio" id="3min" name="time" value="3min" required>
+        <label for="3min">3 minutes</label>
         <br>
-        <input type="radio" id="2hr" name="time" value="2hr">
-        <label for="2hr">2 hours</label>
+        <input type="radio" id="10min" name="time" value="10min">
+        <label for="10min">10 minutes</label>
         <br>
-        <input type="radio" id="fewDays" name="time" value="fewDays">
-        <label for="fewDays">A few days</label>
+        <input type="radio" id="hour" name="time" value="hour">
+        <label for="hour">Less than an hour</label>
         <br>
-        <input type="radio" id="week" name="time" value="week">
-        <label for="week">A week</label>
+        <input type="radio" id="hours" name="time" value="hours">
+        <label for="hours">A few hours</label>
         <br>
         <!--Question 7-->
         <br>
