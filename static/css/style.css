@@ -118,5 +118,5 @@ section.container .row {
 }
 
 #overlay {
-  background-color: firebrick;
+  background-image: url("gradientBack.jpg");
 }
