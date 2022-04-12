@@ -118,9 +118,5 @@ section.container .row {
 }
 
 #overlay {
-  width: 80%;
-  margin: 10% auto;
-  height: 95vh;
   background-color: firebrick;
-  border-radius: 40px;
 }
