@@ -4,10 +4,10 @@ body {
 }
 
 form {
-  text-align: center;
+  text-align: left;
   line-height: 30px;
   height: 80%;
-  overflow: auto;
+  overflow: visible;
 }
 
 ul {
