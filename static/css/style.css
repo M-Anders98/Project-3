@@ -11,6 +11,10 @@ form {
   overflow: visible;
 }
 
+a {
+  text-decoration: none;
+}
+
 ul {
   list-style: none;
   display: flex;
@@ -38,6 +42,7 @@ div > h1 {
 nav > p {
   cursor: pointer;
 }
+
 .pill-black, .pill-white {
   border: 0.5px solid;
   border-radius: 5px;
