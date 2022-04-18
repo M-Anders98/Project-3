@@ -17,19 +17,19 @@ def recs():
         experience = request.form.get("experience")
 
         # q1
-        q1 = request.form.get("console")
+        q1 = request.form.getlist("console")
         # q2
-        q2 = request.form.get("rating")
+        q2 = request.form.getlist("rating")
         # q3
         q3 = request.form.get("matureContent")
         # q4
-        q4 = request.form.get("multiplayer")
+        q4 = request.form.getlist("multiplayer")
         # q5
-        q5 = request.form.get("difficulty")
+        q5 = request.form.getlist("difficulty")
         # q6
         q6 = request.form.get("time")
         # q7
-        q7 = request.form.get("structure")
+        q7 = request.form.getlist("structure")
         # q8
         q8 = request.form.get("skills1")
         # q9
