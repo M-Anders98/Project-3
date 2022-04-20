@@ -4,6 +4,7 @@
 		<title>Game Rec Results</title>
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href ="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
 		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
  		<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 
@@ -25,19 +26,19 @@
 					<thead>
 						<tr>
 							<th>Name</th>
-							<th>Release Date</th>
-							<th>Game Image</th>
-							<th>Rating</th>
-							<th>Platforms</th>
-							<th>Playtime</th>
+							<th>Release Date </th>
+							<th>Description </th>
+							<th>Rating </th>
+							<th>Platforms </th>
+							<th>Playtime </th>
 						</tr>
 					</thead>
 					<tfoot>
 						<tr>
 							<th>Name</th>
 							<th>Release Date</th>
-							<th>Game Image</th>
-							<th>Rating</th>
+							<th>Description</th>
+							<th>Rating </th>
 							<th>Platforms</th>
 							<th>Playtime</th>
 						</tr>
@@ -54,7 +55,7 @@
 					$('#games').DataTable({
 						"ajax": {
 							// "url": "static/objects2.txt", // This works for the static file
-							"url": "/get_data", 
+							"url": "/get_data1", 
 							"dataType": "json",
 							"dataSrc": "results",
 							"contentType":"application/json"
@@ -63,14 +64,37 @@
 							{ data: 'name'},
 							{ data: 'released'},
 							{ data: 'background_image'},
-							{ data: 'rating'},
-							{ data: 'platforms[0].platform.name'},
+							{ data: 'metacritic'},
+							{ data: 'platforms[].platform.name'},
 							{ data: 'playtime'}
 						]
 					});
 				});
-			}
+
+		$('#games tbody').on( 'click', 'tr', function () {
+        // this came from https://datatables.net/examples/advanced_init/events_live.html
+        var table = $('#games').DataTable();
+        var data = table.row( this ).data();
+          // alert( 'You clicked on '+data[0] );
+          alert( 'You clicked on '+ data.name );
+  
+        if ( $(this).hasClass('selected') ) {
+          $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+  
+		// other reactive to be called per each selected row
+        window.myLine.update();
+  
+        } );
+       }
 	$( window ).on( "load", setupData );
+  	$('#button').click( function () {
+	  table.row('.selected').remove().draw( false );
+  	} );
 	</script>
 	</body>
 	<footer></footer>
