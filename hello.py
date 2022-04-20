@@ -1,4 +1,7 @@
-from flask import Flask,render_template, request
+from flask import Flask,render_template, request, jsonify
+import urllib.request, json
+
+import os
 app = Flask(__name__)
 
 @app.route('/')
@@ -9,8 +12,18 @@ def home():
 def quiz():
     return render_template('quiz.html')
 
+@app.route('/get_data')
+def stuff ():
+    url = "https://api.rawg.io/api/games?key=39399cb9ce8f477899ff74f53e93338f"
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    data = json.loads(data.decode('utf-8'))
+    return jsonify(data)
+
+
 @app.route('/recs.html', methods = ["GET", "POST"])
 def recs():
+    
     if request.method == "POST":
         name = request.form.get("username")
         age = request.form.get("age")
@@ -37,7 +50,7 @@ def recs():
         # q10
         q10 = request.form.get("NPCs")
         print(age, experience, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10)
-
+   
     return render_template('recs.html')
     
 @app.route('/index.html')
