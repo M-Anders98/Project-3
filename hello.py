@@ -1,5 +1,7 @@
 from flask import Flask,render_template, request, jsonify
+import requests
 import urllib.request, json
+import http.client
 
 import os
 app = Flask(__name__)
@@ -64,6 +66,23 @@ def stuff ():
             substtring = datawiki['query']['pages'][pagenum[0]]['extract']
         data['results'][i]['background_image'] = substtring[:substtring.find('\n')]
 
+        urlimage = "/images/search?q="+gamelist[i]+"%20game%20cover&count=1"
+        conn = http.client.HTTPSConnection("bing-image-search1.p.rapidapi.com")
+
+        headers = {
+            'X-RapidAPI-Host': "bing-image-search1.p.rapidapi.com",
+            'X-RapidAPI-Key': "d064f5169amsh3d9e48e55e6ef6bp1f606fjsn48921dbaf8b4"
+            }
+
+        conn.request("GET", urlimage, headers=headers)
+
+        res = conn.getresponse()
+        dataimg = res.read()
+        dataimg = json.loads(dataimg.decode("utf-8"))
+        #print(dataimg)
+        imgurl = "<img src="+ dataimg['value'][0]['thumbnailUrl'] + ">"
+        print(imgurl)
+        data['results'][i]['name'] = data['results'][i]['name'] + "\n " + imgurl
 
     
 
