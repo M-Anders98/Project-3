@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 	<head>
 		<title>Game Rec Results</title>
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -15,7 +15,8 @@
 	<body>
 		<header class="container">
 			<div class="row">
-				<h1 class="col-sm-8">Game Recommendations</h1>
+				<h1 class="col-sm-8">The Game Master
+				</h1>
 				<nav class = "col-sm-4">
 					<p class="pill-white"><a href="index.html">Home</a></p>
 				</nav>
@@ -35,22 +36,9 @@
 							<th>Playtime </th>
 						</tr>
 					</thead>
-					<tfoot>
-						<tr>
-							<th>Name</th>
-							<th>Release Date</th>
-							<th>Description</th>
-							<th>Rating </th>
-							<th>Platforms</th>
-							<th>Playtime</th>
-						</tr>
-					</tfoot>
 				</table>
-				
-
 			</div>
 		</section>
-
 		<script>
 			function setupData() {
 				$(document).ready(function () {
