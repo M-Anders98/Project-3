@@ -2,9 +2,8 @@
 <html>
 	<head>
 		<title>Game Rec Results</title>
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href ="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
  		<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
@@ -65,7 +64,7 @@
 							{ data: 'name'},
 							{ data: 'released'},
 							{ data: 'background_image'},
-							{ data: 'metacritic'},
+							{ data: 'rating'},
 							{ data: 'platforms[].platform.name'},
 							{ data: 'playtime'}
 						]

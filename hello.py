@@ -10,7 +10,6 @@ data = {}
 # experience = 0
 
 
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -83,8 +82,8 @@ def api_requests ():
 #     xbox one = 1
 #     Playstation 4 =18
 #     switch = 7
-    tags = ","
-    genres= ","
+    tags = ""
+    genres= ""
     for i in range(len(q1)):
         if q1[i] == "xbox":
             q1[i] = 1
@@ -111,7 +110,7 @@ def api_requests ():
         if q4[i] == "onlinePlay":
             tags += "multiplayer,"
         if q4[i] == "myself":
-            tags += "singleplayer,"
+            tags += "singleplayer;"
         if q4[i] == "learn2play":
             tags += "multiplayer,"
 
@@ -128,18 +127,18 @@ def api_requests ():
         if q7[i] == "levels":
             tags += "singleplayer,"
         if q7[i] == "stories":
-            tags += "story-rich,"
+            tags += "story-rich,indie,"
         if q7[i] == "openWorld":
             tags += "open-world,"
         if q7[i] == "campaigns":
-            tags += "singleplayer,story-rich,"
+            tags += "singleplayer;story-rich,"
 
     if q8 == "problemSolving":
         genres += "puzzle,role-playing-games-rpg,simulation,strategy,"
     if q8 == "fastReasoning":
-        genres += "fighting,shooter,racing,sports,"
+        genres += "fighting,sports,shooter,racing,"
     if q8 == "decisionMaking":
-        genres += "fighting,shooter,racing,role-playing-games-rpg,simulation,"
+        genres += "fighting,racing,simulation,"
     if q8 == "organization":
         genres += "puzzle,simulation,strategy,"
 
@@ -157,14 +156,14 @@ def api_requests ():
         tags += "story-rich"
 
     if q11 == "popular":
-        q11 = "rating"
+        q11 = "metacritic"
     if q11 == "newness":
         q11 = "released"
     if q11 == "price":
         tags += "f2p,free-to-play"
     if q11 == "expansion":
         dlc = "dlc"
-    url = "https://api.rawg.io/api/games?tags="+str(tags)+"&genres="+str(genres)+"&sort="+str(q11)+"&key=39399cb9ce8f477899ff74f53e93338f"
+    url = "https://api.rawg.io/api/games?genres="+str(genres)+"&tags="+str(tags)+"&ordering="+str(q11)+"&key=39399cb9ce8f477899ff74f53e93338f"
     print(url)
     response = urllib.request.urlopen(url)
     data = response.read()
@@ -197,43 +196,56 @@ def api_requests ():
     #                 data['results'][2]['background-image'] = datawiki['query']['pages'][pagenum[0]]['extract']
     #                 countdesc += 1
     #             count += 1
+    substtring = ""
     for i in range(len(gamelist)):
+        gamelist[i] = gamelist[i].encode("ascii", errors="ignore").decode()
         urlwiki = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles="
         urlwiki = urlwiki + gamelist[i]
         print(urlwiki)
         responsewiki = urllib.request.urlopen(urlwiki)
         datawiki = responsewiki.read()
         datawiki = json.loads(datawiki.decode('utf-8'))
-        pagenum = list(datawiki['query']['pages'])
-        substtring = datawiki['query']['pages'][pagenum[0]]['extract']
-        if(len(datawiki['query']['pages'][pagenum[0]]['extract']) < 550):
-            #print("WRONG GAME!")
-            urlwiki = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles="
-            urlwiki = urlwiki + gamelist[i] + "_(video_game)"
-            responsewiki = urllib.request.urlopen(urlwiki)
-            datawiki = responsewiki.read()
-            datawiki = json.loads(datawiki.decode('utf-8'))
-            pagenum = list(datawiki['query']['pages'])  
-            #print(datawiki['query']['pages'][pagenum[0]]['extract'])
-            substtring = datawiki['query']['pages'][pagenum[0]]['extract']
-        data['results'][i]['background_image'] = substtring[:substtring.find('\n')]
-        gamelist[i] = gamelist[i].replace(":", "")
-        urlimage = "/images/search?q="+gamelist[i]+"%20game%20cover&count=1"
-        conn = http.client.HTTPSConnection("bing-image-search1.p.rapidapi.com")
+        if 'query' in datawiki:
+            pagenum = list(datawiki['query']['pages'])
+            print(pagenum[0])
+            if 'extract' in datawiki['query']['pages'][pagenum[0]]:
+                if(pagenum[0] == -1):
+                    substtring = "A game description could not be found. Our apologize while we look into this issue."
+                else:
+                    substtring = datawiki['query']['pages'][pagenum[0]]['extract']
+                    if(len(datawiki['query']['pages'][pagenum[0]]['extract']) < 550):
+                        #print("WRONG GAME!")
+                        urlwiki = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles="
+                        urlwiki = urlwiki + gamelist[i] + "_(video_game)"
+                        responsewiki = urllib.request.urlopen(urlwiki)
+                        datawiki = responsewiki.read()
+                        datawiki = json.loads(datawiki.decode('utf-8'))
+                        pagenum = list(datawiki['query']['pages'])  
+                        #print(datawiki['query']['pages'][pagenum[0]]['extract'])
+                        if 'extract' in datawiki['query']['pages'][pagenum[0]]:
+                            substtring = datawiki['query']['pages'][pagenum[0]]['extract']
+                        else:
+                            substtring = "A game description could not be found. Our apologize while we look into this issue."
+            else:
+                substrings = "A game description could not be found. Our apologize while we look into this issue."
+            data['results'][i]['background_image'] = substtring[:substtring.find('\n')]
+            gamelist[i] = gamelist[i].replace(":", "")
+            urlimage = "/images/search?q="+gamelist[i]+"%20game%20cover&count=1"
+            conn = http.client.HTTPSConnection("bing-image-search1.p.rapidapi.com")
 
-        headers = {
-            'X-RapidAPI-Host': "bing-image-search1.p.rapidapi.com",
-            'X-RapidAPI-Key': "d064f5169amsh3d9e48e55e6ef6bp1f606fjsn48921dbaf8b4"
-            }
+            headers = {
+                'X-RapidAPI-Host': "bing-image-search1.p.rapidapi.com",
+                'X-RapidAPI-Key': "d064f5169amsh3d9e48e55e6ef6bp1f606fjsn48921dbaf8b4"
+                }
 
-        conn.request("GET", urlimage, headers=headers)
+            conn.request("GET", urlimage, headers=headers)
 
-        res = conn.getresponse()
-        dataimg = res.read()
-        dataimg = json.loads(dataimg.decode("utf-8"))
-        imgurl = "<img src="+ dataimg['value'][0]['thumbnailUrl'] + ">"
-        print(imgurl)
-        data['results'][i]['name'] = data['results'][i]['name'] + "\n " + imgurl
+            res = conn.getresponse()
+            dataimg = res.read()
+            dataimg = json.loads(dataimg.decode("utf-8"))
+            imgurl = "<img src="+ dataimg['value'][0]['thumbnailUrl'] + ">"
+            print(imgurl)
+            data['results'][i]['name'] = data['results'][i]['name'] + "\n " + imgurl
     
     return jsonify(data)
 
