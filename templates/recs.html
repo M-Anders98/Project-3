@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 	<head>
 		<title>Game Rec Results</title>
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href ="https://cdn.datatables.net/1.11.5/css/dataTables.bulma.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css"/>
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
+		<link rel="stylesheet" href="href=https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bulma.min.css"/>
 
 		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
  		<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
@@ -15,8 +15,7 @@
 	<body>
 		<header class="container">
 			<div class="row">
-				<h1 class="col-sm-8">The Game Master
-				</h1>
+				<h1 class="col-sm-8">Game Recommendations</h1>
 				<nav class = "col-sm-4">
 					<p class="pill-white"><a href="index.html">Home</a></p>
 				</nav>
@@ -36,9 +35,22 @@
 							<th>Playtime </th>
 						</tr>
 					</thead>
+					<tfoot>
+						<tr>
+							<th>Name</th>
+							<th>Release Date</th>
+							<th>Description</th>
+							<th>Rating </th>
+							<th>Platforms</th>
+							<th>Playtime</th>
+						</tr>
+					</tfoot>
 				</table>
+				
+
 			</div>
 		</section>
+
 		<script>
 			function setupData() {
 				$(document).ready(function () {

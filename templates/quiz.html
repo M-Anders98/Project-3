@@ -14,7 +14,7 @@
   <body id="overlay">
   	<header>
   		<div class="row">
-				<h1 class="col-sm-8">The Game Master</h1>
+				<h1 class="col-sm-8">Game Recommendations</h1>
 				<nav class = "col-sm-4">
 					<p class="pill-white"><a href="index.html">Home</a></p>
 				</nav>
@@ -23,7 +23,7 @@
       <h1>Complete the Quiz!</h1>
       <hr>
       <!--Add the Quiz questions below:-->
-      <form action="recs.html" method="POST">
+      <form action="/recs.html" method="POST">
         <!--User info-->
         <label for="username">Name (first & last): </label>
         <input id="username" type="text" name="username" required>
@@ -58,10 +58,7 @@
         <br>
         <span>What game ratings are you comfortable playing? [check all that apply]</span>
         <br>
-        <p><a href="https://en.wikipedia.org/wiki/Entertainment_Software_Rating_Board#Ratings"></a>To learn more about these ratings, click here.</a></p>
-        <input type="checkbox" name="rating" id="ec" value="ec">
-        <label for="ec">EC (Early Childhood)</label>
-        <br>
+        <p>To learn more about these ratings, click <a href="https://en.wikipedia.org/wiki/Entertainment_Software_Rating_Board#Ratings">here</a>.</p>
         <input type="checkbox" name="rating" id="e" value="e">
         <label for="e">E (Everyone)</label>
         <br>
@@ -144,20 +141,20 @@
         <br>
         <input type="checkbox" name="structure" id="levels" value="levels">
         <label for="levels">Levels</label>
-        <p>&emsp;I can pass one level and move on to a new separate level.</p>
+        <p>I can pass one level and move on to a new separate level.</p>
         <input type="checkbox" name="structure" id="stories" value="stories">
         <label for="stories">Stories</label>
-        <p>&emsp;I can complete challenges that move my character farther into the story.</p>
+        <p>I can complete challenges that move my character farther into the story.</p>
         <input type="checkbox" name="structure" id="openWorld" value="openWorld">
         <label for="openWorld">Open-world</label>
-        <p>&emsp;Explore and discover without specific one-track challenges.</p>
+        <p>Explore and discover without specific one-track challenges.</p>
         <input type="checkbox" name="structure" id="campaigns" value="campaigns">
         <label for="campaigns">Campaigns</label>
-        <p>&emsp;Same challenge every time, but open-ended as far as what I and other players can do to win/lose this time.</p>
+        <p>Same challenge every time, but open-ended as far as what I and other players can do to win/lose this time.</p>
         <br>
         <!--Question 8-->
         <br>
-        <span>Which of the following skills is <strong>most</strong> important to you?</span>
+        <span>Which of the following skills is most important to you?</span>
         <br>
         <input type="radio" id="problemSolving" name="skills1" value="problemSolving" required>
         <label for="problemSolving">Problem Solving</label>
@@ -173,7 +170,7 @@
         <br>
         <!--Question 9-->
         <br>
-        <span>Which of the following skills is <strong>most</strong> important to you?</span>
+        <span>Which of the following skills is most important to you?</span>
         <br>
         <input type="radio" id="handeyeCoordination" name="skills2" value="handeyeCoordination" required>
         <label for="handeyeCoordination">Hand-eye Coordination</label>
@@ -208,7 +205,7 @@
         <label for="newness">"Newness"</label>
         <br>
         <input type="radio" id="price" name="decisionImpacts" value="price">
-        <label for="price">Price</label>
+        <label for="price">Free-to-Play</label>
         <br>
         <input type="radio" id="expansion" name="decisionImpacts" value="expansion">
         <label for="expansion">Expansion possibilities</label>
