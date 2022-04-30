@@ -2,8 +2,9 @@ from flask import Flask,render_template, request, jsonify, g, session
 import urllib.request, json
 import http.client
 import os
+from collections.abc import Iterable
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'wowiezowiesowwieihatethisdamnfasdfl;adsjfasdlkfjadsasdf'
+app.config['SECRET_KEY'] = 'wowiezowiesowwieihatethisdamnfasdfadsjfasdlkfjadsasdf'
 data = {}
 # name = ""
 # age = 0
@@ -110,7 +111,7 @@ def api_requests ():
         if q4[i] == "onlinePlay":
             tags += "multiplayer,"
         if q4[i] == "myself":
-            tags += "singleplayer;"
+            tags += "singleplayer,"
         if q4[i] == "learn2play":
             tags += "multiplayer,"
 
@@ -125,18 +126,18 @@ def api_requests ():
 
     for i in range(len(q7)):
         if q7[i] == "levels":
-            tags += "singleplayer,"
+            tags += "singleplayer"
         if q7[i] == "stories":
-            tags += "story-rich,indie,"
+            tags += "indie"
         if q7[i] == "openWorld":
-            tags += "open-world,"
+            tags += "open-world"
         if q7[i] == "campaigns":
-            tags += "singleplayer;story-rich,"
+            tags += "singleplayer"
 
     if q8 == "problemSolving":
-        genres += "puzzle,role-playing-games-rpg,simulation,strategy,"
+        genres += "puzzle,simulation,strategy,"
     if q8 == "fastReasoning":
-        genres += "fighting,sports,shooter,racing,"
+        genres += "fighting,sports,racing,"
     if q8 == "decisionMaking":
         genres += "fighting,racing,simulation,"
     if q8 == "organization":
@@ -144,16 +145,17 @@ def api_requests ():
 
 
     if q9 == "handeyeCoordination":
-        genres += "fighting,puzzle,sports,"
+        genres += "fighting,puzzle,sports"
     if q9 == "creativity":
-        genres += "simulation,sandbox,"
+        genres += "simulation,sandbox"
     if q9 == "logicalThinking":
-        genres += "puzzle,strategy,"
+        genres += "puzzle,strategy"
     if q9 == "timeManagement":
-        genres += "action,arcade,strategy,"
+        genres += "arcade,strategy"
     
     if q10 == "yes10":
-        tags += "story-rich"
+        tags += ",story-rich"
+        genres += ",role-playing-games-rpg"
 
     if q11 == "popular":
         q11 = "metacritic"
@@ -162,8 +164,8 @@ def api_requests ():
     if q11 == "price":
         tags += "f2p,free-to-play"
     if q11 == "expansion":
-        dlc = "dlc"
-    url = "https://api.rawg.io/api/games?genres="+str(genres)+"&tags="+str(tags)+"&ordering="+str(q11)+"&key=39399cb9ce8f477899ff74f53e93338f"
+        q11 = "updated"
+    url = "https://api.rawg.io/api/games?page_size=50&genres="+str(genres)+"&tags="+str(tags)+"&platforms_count=2,3,4,5,6,7,8,9"+"&metacritic=20,100"+"&ordering="+str(q11)+"&key=39399cb9ce8f477899ff74f53e93338f"
     print(url)
     response = urllib.request.urlopen(url)
     data = response.read()
@@ -197,7 +199,43 @@ def api_requests ():
     #                 countdesc += 1
     #             count += 1
     substtring = ""
+    count = 40
+    for k in range(len(gamelist)):
+        #print(k)
+        #print(count)
+        if(count <= k):
+            break
+        if isinstance(data['results'][k]['esrb_rating'], Iterable):
+            if data['results'][k]['esrb_rating']['slug'] not in q2:
+                #print("I deleted:", data['results'][k]['name'] )
+                del data['results'][k]
+                del gamelist[k]
+                count -= 1
+    for m in range(len(gamelist)):
+        print(m)
+        platforms = []
+        #print(k)
+        #print(count)
+        if(count == m):
+            break
+        for j in range(len(data['results'][m]['platforms'])):
+            #print(data['results'][m]['platforms'][j]['platform']['id'])
+            platforms.append(data['results'][m]['platforms'][j]['platform']['id'])
+        print(platforms)
+        hasplat = bool(len({*q1} & {*platforms}))
+        if hasplat == False:
+            print("I deleted:", data['results'][m]['name'] )
+            del data['results'][m]
+            del gamelist[m]
+            count -= 1
+            platforms = []
+            print(count)
+        if(count <= m):
+            break
+            
+    
     for i in range(len(gamelist)):
+        substtring = ""
         gamelist[i] = gamelist[i].encode("ascii", errors="ignore").decode()
         urlwiki = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles="
         urlwiki = urlwiki + gamelist[i]
@@ -225,27 +263,28 @@ def api_requests ():
                         if 'extract' in datawiki['query']['pages'][pagenum[0]]:
                             substtring = datawiki['query']['pages'][pagenum[0]]['extract']
                         else:
-                            substtring = "A game description could not be found. Our apologize while we look into this issue."
+                            substtring = "A game description could not be found. Our apologizes while we look into this issue."
             else:
                 substrings = "A game description could not be found. Our apologize while we look into this issue."
+            #gameimagerawg = data['results'][i]['background_image']
             data['results'][i]['background_image'] = substtring[:substtring.find('\n')]
-            gamelist[i] = gamelist[i].replace(":", "")
+            gamelist[i] = gamelist[i].replace(":", "_")
             urlimage = "/images/search?q="+gamelist[i]+"%20game%20cover&count=1"
             conn = http.client.HTTPSConnection("bing-image-search1.p.rapidapi.com")
 
             headers = {
-                'X-RapidAPI-Host': "bing-image-search1.p.rapidapi.com",
-                'X-RapidAPI-Key': "d064f5169amsh3d9e48e55e6ef6bp1f606fjsn48921dbaf8b4"
-                }
-
+            'X-RapidAPI-Host': "bing-image-search1.p.rapidapi.com",
+            'X-RapidAPI-Key': "a6917ab69dmsh7460e3dc559f97dp14cd34jsn7d209ee0d05e"
+            }
             conn.request("GET", urlimage, headers=headers)
 
             res = conn.getresponse()
             dataimg = res.read()
             dataimg = json.loads(dataimg.decode("utf-8"))
             imgurl = "<img src="+ dataimg['value'][0]['thumbnailUrl'] + ">"
+            #imgurl2 = "<img src="+ gameimagerawg + ">"
             print(imgurl)
-            data['results'][i]['name'] = data['results'][i]['name'] + "\n " + imgurl
+            data['results'][i]['name'] = data['results'][i]['name'] + "<br>" + imgurl + "\n"
     
     return jsonify(data)
 
