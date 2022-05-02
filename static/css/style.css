@@ -49,6 +49,10 @@ nav > p {
   text-align: center;
 }
 
+table.dataTable img {
+  width: 90%;
+  height: auto;
+}
 .pill-black {
   background-color: #000000;
   color: #FFFFFF;

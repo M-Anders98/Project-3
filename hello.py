@@ -8,8 +8,12 @@ app.config['SECRET_KEY'] = 'wowiezowiesowwieihatethisdamnfasdfadsjfasdlkfjadsasd
 data = {}
 # name = ""
 # age = 0
-# experience = 0
-
+def common_member(a, b):
+    a_set = set(a)
+    b_set = set(b)
+    if len(a_set.intersection(b_set)) > 0:
+        return(True) 
+    return(False) 
 
 @app.route('/')
 def home():
@@ -85,16 +89,17 @@ def api_requests ():
 #     switch = 7
     tags = ""
     genres= ""
+    platforms = ""
     for i in range(len(q1)):
         if q1[i] == "xbox":
-            q1[i] = 1
-        if q1[i] == "playstaion":
-            q1[i] = 18
+            platforms += "1,"
+        if q1[i] == "playstation":
+            platforms += "18,"
         if q1[i] == "switch":
-            q1[i] = 7
+            platforms += "7,"
         if q1[i] == "computer":
-            q1[i] = 4
-
+            platforms += "4,"
+    print(platforms)
     for i in range(len(q2)):
         if q2[i] == "e":
             q2[i] = "everyone"
@@ -104,6 +109,10 @@ def api_requests ():
             q2[i] = "teen"
         if q2[i] == "m":
             q2[i] = "mature"
+    if q3 == "yes3":
+        tags += "violent,"
+    else:
+        nonviolent = q3
 
     for i in range(len(q4)):
         if q4[i] == "sameConsole":
@@ -165,7 +174,7 @@ def api_requests ():
         tags += "f2p,free-to-play"
     if q11 == "expansion":
         q11 = "updated"
-    url = "https://api.rawg.io/api/games?page_size=50&genres="+str(genres)+"&tags="+str(tags)+"&platforms_count=2,3,4,5,6,7,8,9"+"&metacritic=20,100"+"&ordering="+str(q11)+"&key=39399cb9ce8f477899ff74f53e93338f"
+    url = "https://api.rawg.io/api/games?page_size=50&platforms="+str(platforms)+"&genres="+str(genres)+"&tags="+str(tags)+"&platforms_count=2,3,4,5,6,7,8,9"+"&metacritic=20,100"+"&ordering="+str(q11)+"&key=39399cb9ce8f477899ff74f53e93338f"
     print(url)
     response = urllib.request.urlopen(url)
     data = response.read()
@@ -199,7 +208,7 @@ def api_requests ():
     #                 countdesc += 1
     #             count += 1
     substtring = ""
-    count = 40
+    count = len(gamelist)
     for k in range(len(gamelist)):
         #print(k)
         #print(count)
@@ -211,27 +220,6 @@ def api_requests ():
                 del data['results'][k]
                 del gamelist[k]
                 count -= 1
-    for m in range(len(gamelist)):
-        print(m)
-        platforms = []
-        #print(k)
-        #print(count)
-        if(count == m):
-            break
-        for j in range(len(data['results'][m]['platforms'])):
-            #print(data['results'][m]['platforms'][j]['platform']['id'])
-            platforms.append(data['results'][m]['platforms'][j]['platform']['id'])
-        print(platforms)
-        hasplat = bool(len({*q1} & {*platforms}))
-        if hasplat == False:
-            print("I deleted:", data['results'][m]['name'] )
-            del data['results'][m]
-            del gamelist[m]
-            count -= 1
-            platforms = []
-            print(count)
-        if(count <= m):
-            break
             
     
     for i in range(len(gamelist)):
