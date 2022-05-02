@@ -37,6 +37,8 @@ header nav {
 
 div > h1 {
   font-size: 1.8rem;
+  color: midnightblue;
+  background-color: antiquewhite;
 }
 
 nav > p {
@@ -83,6 +85,10 @@ header .row {
   margin: 25px 20px 15px;
   min-width: 60px;
   padding: 1px;
+}
+
+section {
+  background-image: url('gradientBack.jpg');
 }
 
 section.container .row {
