@@ -86,10 +86,6 @@ header .row {
   padding: 1px;
 }
 
-section {
-  /* background-image: url('gradientBack.jpg'); */
-}
-
 section.container .row {
   display: flex;
   flex-wrap: wrap;
