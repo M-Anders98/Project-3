@@ -88,7 +88,7 @@ header .row {
 }
 
 section {
-  background-image: url('gradientBack.jpg');
+  /* background-image: url('gradientBack.jpg'); */
 }
 
 section.container .row {
