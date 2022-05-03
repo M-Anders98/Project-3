@@ -32,11 +32,15 @@
         <label for="age">Age: </label>
         <input type="number" id="age" name="age" min="1" max="100" required>
         <br>
-        <label for="experience">How experienced are you in gaming? (0-5)</label>
+        <label for="experience">How experienced are you in gaming? (0 to 5)</label>
         <br>
-        <span>No Experience</span>
-        <input type="range" id="experience" name="experience" min="0" max="5" required>
-        <span>Very Experienced</span>
+        <div style="display:flex; flex-direction: row; justify-content: left; align-items: center;">
+          <label for="experience">How experienced are you in gaming? (0-5)</label>
+          <br>
+          <span>No Experience</span>
+          <input type="range" id="experience" name="experience" min="0" max="5" required>
+          <span>Very Experienced</span>
+          </div>
         <br>
         <!--Quiz Questions-->
         <!--Question 1-->
